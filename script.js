@@ -344,7 +344,8 @@ async function saveResponse() {
         text: userInput,
         leftImage: currentLeftImage,
         rightImage: currentRightImage,
-        word: currentWord
+        word: currentWord,
+        timestamp: new Date().toLocaleString()
     };
 
     const db = firebase.firestore();
@@ -366,13 +367,23 @@ async function viewResponses() {
     }
 
     responsesDiv.innerHTML = "<ul>" + responses.map(response => `
-        <li>
+        <li class="response-item">
             <p><strong>Response:</strong> ${response.text}</p>
             <p><strong>Left Image:</strong> <img src="${response.leftImage}" alt="Image" width="100"></p>
             <p><strong>Right Image:</strong> <img src="${response.rightImage}" alt="Image" width="100"></p>
             <p><strong>Prompt:</strong> ${response.word}</p>
+            <p class="timestamp"><strong>Timestamp:</strong> ${response.timestamp}</p>
         </li>
     `).join('') + "</ul>";
+
+    document.getElementById("view-responses-btn").classList.add("hide");
+    document.getElementById("hide-responses-btn").classList.remove("hide");
+}
+
+function hideResponses() {
+    document.getElementById("responses").innerHTML = "";
+    document.getElementById("view-responses-btn").classList.remove("hide");
+    document.getElementById("hide-responses-btn").classList.add("hide");
 }
 
 // Load images on initial load
