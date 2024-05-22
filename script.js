@@ -307,7 +307,6 @@ const images = [
     "images/Zaha-Hadid-Rome-thumb.jpg"
 ];
 
-
 let currentLeftImage = "";
 let currentRightImage = "";
 let currentWord = "";
@@ -348,13 +347,8 @@ async function saveResponse() {
         word: currentWord
     };
 
-    await fetch('http://localhost:3000/responses', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(response)
-    });
+    const db = firebase.firestore();
+    await db.collection("responses").add(response);
 
     document.getElementById("user-input").value = '';
     alert("Response saved!");
@@ -362,9 +356,9 @@ async function saveResponse() {
 
 async function viewResponses() {
     const responsesDiv = document.getElementById("responses");
-
-    const response = await fetch('http://localhost:3000/responses');
-    const responses = await response.json();
+    const db = firebase.firestore();
+    const snapshot = await db.collection("responses").get();
+    const responses = snapshot.docs.map(doc => doc.data());
 
     if (responses.length === 0) {
         responsesDiv.innerHTML = "<p>No responses yet.</p>";
