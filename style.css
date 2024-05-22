@@ -47,11 +47,27 @@ button {
     font-size: 16px;
 }
 
-#responses {
+.responses-container {
     width: 80%;
     margin-top: 20px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.response-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.timestamp {
+    color: #888;
+    font-size: 12px;
+}
+
+.hide {
+    display: none;
 }
