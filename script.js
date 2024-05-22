@@ -1,17 +1,4 @@
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyBZOC0rVDFAb6KKARrZGtPGbCJ-3qbO5D0",
-    authDomain: "art-history-study.firebaseapp.com",
-    projectId: "art-history-study",
-    storageBucket: "art-history-study.appspot.com",
-    messagingSenderId: "36887438605",
-    appId: "1:36887438605:web:e403ec87fa9aeb805f3c44",
-    measurementId: "G-8QYKSGL0B8"
-  };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-var db = firebase.firestore();
 
 const words = ["comparison", "visual/contextual", "contextual analysis", "visual analysis", "attribution", "continuity + change"];
 
@@ -361,7 +348,13 @@ async function saveResponse() {
         word: currentWord
     };
 
-    await db.collection("responses").add(response);
+    await fetch('http://localhost:3000/responses', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(response)
+    });
 
     document.getElementById("user-input").value = '';
     alert("Response saved!");
@@ -370,8 +363,8 @@ async function saveResponse() {
 async function viewResponses() {
     const responsesDiv = document.getElementById("responses");
 
-    const snapshot = await db.collection("responses").get();
-    const responses = snapshot.docs.map(doc => doc.data());
+    const response = await fetch('http://localhost:3000/responses');
+    const responses = await response.json();
 
     if (responses.length === 0) {
         responsesDiv.innerHTML = "<p>No responses yet.</p>";
