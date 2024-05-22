@@ -1,3 +1,17 @@
+// Firebase configuration
+var firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+var db = firebase.firestore();
+
 const words = ["comparison", "visual/contextual", "contextual analysis", "visual analysis", "attribution", "continuity + change"];
 
 const images = [
@@ -346,13 +360,7 @@ async function saveResponse() {
         word: currentWord
     };
 
-    await fetch('http://localhost:3000/responses', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(response)
-    });
+    await db.collection("responses").add(response);
 
     document.getElementById("user-input").value = '';
     alert("Response saved!");
@@ -361,8 +369,8 @@ async function saveResponse() {
 async function viewResponses() {
     const responsesDiv = document.getElementById("responses");
 
-    const response = await fetch('http://localhost:3000/responses');
-    const responses = await response.json();
+    const snapshot = await db.collection("responses").get();
+    const responses = snapshot.docs.map(doc => doc.data());
 
     if (responses.length === 0) {
         responsesDiv.innerHTML = "<p>No responses yet.</p>";
