@@ -1,12 +1,13 @@
 // Firebase configuration
-var firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
-};
+const firebaseConfig = {
+    apiKey: "AIzaSyBZOC0rVDFAb6KKARrZGtPGbCJ-3qbO5D0",
+    authDomain: "art-history-study.firebaseapp.com",
+    projectId: "art-history-study",
+    storageBucket: "art-history-study.appspot.com",
+    messagingSenderId: "36887438605",
+    appId: "1:36887438605:web:e403ec87fa9aeb805f3c44",
+    measurementId: "G-8QYKSGL0B8"
+  };
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
