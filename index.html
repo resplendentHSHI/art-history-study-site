@@ -18,8 +18,9 @@
     <textarea id="user-input" placeholder="Type your response here..."></textarea>
     <button onclick="saveResponse()">Save</button>
     <button onclick="reloadImages()">Reload</button>
-    <button onclick="viewResponses()">View Responses</button>
-    <div id="responses"></div>
+    <button id="view-responses-btn" onclick="viewResponses()">View Responses</button>
+    <button id="hide-responses-btn" class="hide" onclick="hideResponses()">Hide Responses</button>
+    <div id="responses" class="responses-container"></div>
     <script>
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -32,7 +33,7 @@
             measurementId: "G-8QYKSGL0B8"
         };
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+       firebase.initializeApp(firebaseConfig);
     </script>
     <script src="script.js"></script>
 </body>
