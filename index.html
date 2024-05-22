@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Comparison Study</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="image-container" id="left-image"></div>
+        <div class="word-container" id="word"></div>
+        <div class="image-container" id="right-image"></div>
+    </div>
+    <textarea id="user-input" placeholder="Type your response here..."></textarea>
+    <button onclick="saveResponse()">Save</button>
+    <button onclick="reloadImages()">Reload</button>
+    <button onclick="viewResponses()">View Responses</button>
+    <div id="responses"></div>
+    <script src="script.js"></script>
+</body>
+</html>
