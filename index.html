@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Art History Study Site</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
 </head>
 <body>
     <div class="container">
@@ -17,7 +20,6 @@
     <button onclick="reloadImages()">Reload</button>
     <button onclick="viewResponses()">View Responses</button>
     <div id="responses"></div>
-    <script src="script.js"></script>
     <script>
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -29,9 +31,9 @@
             appId: "1:36887438605:web:e403ec87fa9aeb805f3c44",
             measurementId: "G-8QYKSGL0B8"
         };
-
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
     </script>
+    <script src="script.js"></script>
 </body>
 </html>
